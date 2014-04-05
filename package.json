@@ -13,11 +13,11 @@
   "description": "Recursively finds files and directories.",
   "author": "James Newell <james@digitaledgeit.com.au>",
   "bugs": {
-    "url": "https://github.com/digitaledgeit/finder-on-steroids/issues"
+    "url": "https://github.com/digitaledgeit/npm-finder-on-steroids/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/digitaledgeit/finder-on-steroids.git"
+    "url": "https://github.com/digitaledgeit/npm-finder-on-steroids.git"
   },
   "dependencies": {
     "readdir-on-steroids": "~0.2.0",
