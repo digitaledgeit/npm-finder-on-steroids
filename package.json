@@ -1,0 +1,26 @@
+{
+  "name": "finder-on-steroids",
+  "version": "0.1.0",
+  "keywords": [
+    "fs",
+    "readdir",
+    "recursive",
+    "directory",
+    "filter",
+    "finder",
+    "file"
+  ],
+  "description": "Recursively finds files and directories.",
+  "author": "James Newell <james@digitaledgeit.com.au>",
+  "bugs": {
+    "url": "https://github.com/digitaledgeit/finder-on-steroids/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitaledgeit/finder-on-steroids.git"
+  },
+  "dependencies": {
+    "readdir-on-steroids": "~0.2.0",
+    "minimatch": "~0.2.14"
+  }
+}
