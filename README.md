@@ -27,6 +27,10 @@ Restrict results to contain only files and directories with names that match the
 
 Restrict results to contain only files and directories with relative paths that match the specified pattern. Takes a RegExp or glob string.
 
+### Finder.size(Number : min, [Number : max]) : Finder
+
+Restrict results to contain only files and directories of size within the specified range.
+
 ### Finder.filter(Function(String : path, Object : stats)) : Finder
 
 Restrict results to contain only files and directories according to a custom filter function.

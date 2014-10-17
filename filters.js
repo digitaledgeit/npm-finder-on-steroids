@@ -40,7 +40,7 @@ module.exports = {
 	},
 
 	/**
-	 * Returns true when the path is a file
+	 * Return true when the path is a file
 	 * @returns {Function(String, Object)}
 	 */
 	files: function() {
@@ -50,7 +50,7 @@ module.exports = {
 	},
 
 	/**
-	 * Returns true when the path is a directory
+	 * Return true when the path is a directory
 	 * @returns {Function(String, Object)}
 	 */
 	directories: function() {
@@ -60,7 +60,7 @@ module.exports = {
 	},
 
 	/**
-	 * Returns true when the path is no more than four nodes deep
+	 * Return true when the path is no more than four nodes deep
 	 *  Note: to be used with `walkFilter` otherwise it'll only show depth-1 levels
 	 * @param   {Number} depth
 	 * @returns {Function(String, Object)}
@@ -72,7 +72,7 @@ module.exports = {
 	},
 
 	/**
-	 * Returns true when the path matches the search String
+	 * Return true when the path matches the search String
 	 * @param   {RegExp|String} pattern
 	 * @returns {Function(String, Object)}
 	 */
@@ -92,7 +92,7 @@ module.exports = {
 	},
 
 	/**
-	 * Returns true when the path matches the search String
+	 * Return true when the path matches the search String
 	 * @param   {RegExp|String} pattern
 	 * @returns {Function(String, Object)}
 	 */
@@ -109,9 +109,26 @@ module.exports = {
 			}
 
 		}
-	}
+	},
 
-	//TODO: .size() handle min and max e.g. .size(min, max)
+  /**
+   * Return true when the file size is within the specified range
+   * @param   {Number} min
+   * @param   {Number} [max]
+   * @returns {Function(String, Object)}
+   */
+  size: function(min, max) {
+    return function(path, stats) {
+
+      if (min && max) {
+        return stats.size >= min && stats.size <= max;
+      } else {
+        return stats.size >= min
+      }
+
+    }
+  }
+
 	//TODO: .date() handle min and max e.g. .date(min, max)
 
 };

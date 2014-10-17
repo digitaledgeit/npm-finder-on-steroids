@@ -69,6 +69,8 @@ Finder.prototype.name = filter(filters.name);
  */
 Finder.prototype.path = filter(filters.path);
 
+Finder.prototype.size = filter(filters.size);
+
 /**
  * Restrict results to contain only files and directories according to a custom filter function.
  * @param   {Function(String, Object)} fn

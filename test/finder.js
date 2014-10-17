@@ -69,6 +69,18 @@ describe('finder', function() {
     });
   });
 
+  it('.size() should only return files >=1KB', function(done) {
+    finder(root).files().size(1000).find(function(err, files) {
+      assert.equal(null, err);
+      assert(files instanceof Array);
+      assert(files.length > 0);
+      for (var i=0; i<files.length; ++i) {
+        assert(fs.statSync(files[i]).size > 1000);
+      }
+      done();
+    });
+  });
+
   it('.filter() should pass path and stats arguments to filter', function(done) {
     var count = 0;
     finder(root).filter(function(path, stats) {
