@@ -2,7 +2,7 @@ var finder = require('../');
 
 var directory = process.argv[2] || process.cwd();
 
-finder(directory).files().depth(2).size(4*1000*1000).find(function(err, files) {
+finder(directory).files().depth(2).size(5*1000*1000).find(function(err, files) {
 	if (err) {
     console.log('Error: ', err);
   } else {

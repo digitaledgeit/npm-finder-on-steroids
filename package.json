@@ -8,7 +8,11 @@
     "directory",
     "filter",
     "finder",
-    "file"
+    "file",
+    "walk",
+    "find",
+    "tree",
+    "traversal"
   ],
   "description": "Recursively find files and directories.",
   "author": "James Newell <james@digitaledgeit.com.au>",
