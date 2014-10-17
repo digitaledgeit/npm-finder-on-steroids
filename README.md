@@ -1,35 +1,39 @@
 # finder-on-steroids
-Recursively finds files and directories.
+Recursively find files and directories.
 
 ## Installation
 
-	npm install finder-on-steroids
+	npm install --save finder-on-steroids
 
 ## Methods
 
-### Finder.files()
+### Finder.files() : Finder
 
-Restrict results to only files identified by fs.Stat.isFile().
+Restrict results to contain only files as identified by fs.Stat.isFile().
 
-### Finder.directories()
+### Finder.directories() : Finder
 
-Restrict results to only directories identified by fs.Stat.isDirectory().
+Restrict results to contain only directories identified by fs.Stat.isDirectory().
 
-### Finder.depth(depth)
+### Finder.depth(Number : depth) : Finder
 
-Restrict results to only a specific number of levels deep.
+Restrict results to contain only paths of a specific number of levels.
 
-### Finder.name(pattern)
+### Finder.name(RegExp|String : pattern) : Finder
 
-Restrict results to only files and directories with names that match the base name. Takes a glob string or RegExp.
+Restrict results to contain only files and directories with names that match the specified pattern. Takes a RegExp or glob string.
 
-### Finder.path(pattern)
+### Finder.path(RegExp|String : pattern) : Finder
 
-Restrict results to only files and directories with names that match the full path. Takes a glob string or RegExp.
+Restrict results to contain only files and directories with relative paths that match the specified pattern. Takes a RegExp or glob string.
 
-### Finder.filter(function(path, stats))
+### Finder.filter(Function(String : path, Object : stats)) : Finder
 
-Restrict results using a custom filter function.
+Restrict results to contain only files and directories according to a custom filter function.
+
+### Finder.find([Function(Error, Array) : callback]) : Promise
+
+Finds files matching the specified criteria.
 
 ## Usage
 
@@ -37,7 +41,6 @@ Restrict results using a custom filter function.
 
 	var directory = process.argv[2] || process.cwd();
 
-	finder(directory).files().depth(2).name('*.js').find().then(function(files) {
-		console.log(files);
-		console.log('done!');
+	finder(directory).files().depth(2).name('*.js').find(function(err, files) {
+		console.log(err, files);
 	});

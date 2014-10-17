@@ -1,6 +1,6 @@
 {
   "name": "finder-on-steroids",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "keywords": [
     "fs",
     "readdir",
@@ -10,8 +10,9 @@
     "finder",
     "file"
   ],
-  "description": "Recursively finds files and directories.",
+  "description": "Recursively find files and directories.",
   "author": "James Newell <james@digitaledgeit.com.au>",
+  "main": "finder.js",
   "bugs": {
     "url": "https://github.com/digitaledgeit/npm-finder-on-steroids/issues"
   },
@@ -20,7 +21,14 @@
     "url": "https://github.com/digitaledgeit/npm-finder-on-steroids.git"
   },
   "dependencies": {
-    "readdir-on-steroids": "~0.2.0",
-    "minimatch": "~0.2.14"
+    "readdir-on-steroids": "~0.2.1",
+    "minimatch": "~1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.21",
+    "assert": "~1.1"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha test/finder.js"
   }
 }
