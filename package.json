@@ -1,5 +1,6 @@
 {
   "name": "finder-on-steroids",
+	"license" : "MIT",
   "version": "0.3.1",
   "keywords": [
     "fs",
@@ -14,7 +15,7 @@
     "tree",
     "traversal"
   ],
-  "description": "Recursively find files and directories.",
+  "description": "Recursively find files and directories on the filesystem.",
   "author": "James Newell <james@digitaledgeit.com.au>",
   "main": "finder.js",
   "bugs": {

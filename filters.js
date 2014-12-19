@@ -113,8 +113,8 @@ module.exports = {
 
   /**
    * Return true when the file size is within the specified range
-   * @param   {Number} min
-   * @param   {Number} [max]
+   * @param   {Number} min    The minimum size in bytes
+   * @param   {Number} [max]  The maximum size in bytes
    * @returns {Function(String, Object)}
    */
   size: function(min, max) {
