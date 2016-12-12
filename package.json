@@ -1,7 +1,7 @@
 {
   "name": "finder-on-steroids",
-	"license" : "MIT",
-  "version": "0.3.2",
+  "license": "MIT",
+  "version": "0.4.0",
   "keywords": [
     "fs",
     "readdir",
@@ -26,12 +26,12 @@
     "url": "https://github.com/digitaledgeit/npm-finder-on-steroids.git"
   },
   "dependencies": {
-    "readdir-on-steroids": "~0.2.1",
-    "minimatch": "~1.0.0"
+    "minimatch": "^3.0.3",
+    "readdir-on-steroids": "^0.2.2"
   },
   "devDependencies": {
-    "mocha": "~1.21",
-    "assert": "~1.1"
+    "assert": "^1.4.1",
+    "mocha": "^3.2.0"
   },
   "scripts": {
     "test": "node_modules/.bin/mocha test/finder.js"

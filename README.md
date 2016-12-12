@@ -7,13 +7,15 @@ Recursively find files and directories on the filesystem.
 
 ## Usage
 
-	var finder = require('finder-on-steroids');
+```js
+var finder = require('finder-on-steroids');
 
-	var directory = process.argv[2] || process.cwd();
+var directory = process.argv[2] || process.cwd();
 
-	finder(directory).files().depth(2).name('*.js').find(function(err, files) {
-		console.log(err, files);
-	});
+finder(directory).files().depth(2).name('*.js').find(function(err, files) {
+	console.log(err, files);
+});
+```
 
 ## Methods
 
@@ -41,7 +43,7 @@ Restrict results to contain only files and directories with relative paths that 
 
 Restrict results to contain only files and directories of size within the specified range.
 
-- `min` - The minimum number of bytes that results can contain 
+- `min` - The minimum number of bytes that results can contain
 - `max` - optional - The maximum number of bytes that results can contain
 
 ### Finder.filter(Function(path : String : path, stat : Object) : Boolean) : Finder
@@ -51,6 +53,12 @@ Restrict results to contain only files and directories according to a custom fil
 ### Finder.find([Function(Error, Array) : callback]) : Promise
 
 Finds files matching the specified criteria.
+
+## Change log
+
+## 0.4.0
+
+- updated dependencies
 
 ## License
 
