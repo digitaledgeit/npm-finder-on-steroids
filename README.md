@@ -65,11 +65,11 @@ Restrict results to contain only files and directories with dir names that match
 
 Restrict results to contain only files and directories of size within the specified range.
 
-### `.include(Function(filter: string | RegExp | (path: string, stat: Stats) => boolean): Finder`
+### `.include(filter: string | RegExp | (path: string, stats: Stats) => boolean): Finder`
 
 Restrict results to contain only files and directories according to a custom filter function.
 
-### `.exclude(Function(filter: string | RegExp | (path: string, stat: Stats) => boolean): Finder`
+### `.exclude(filter: string | RegExp | (path: string, stats: Stats) => boolean): Finder`
 
 Restrict results to contain only files and directories according to a custom filter function.
 
