@@ -1,73 +1,84 @@
 # finder-on-steroids
-Recursively find files and directories on the filesystem.
+
+Recursively find and filter files and folders in a directory.
+
+[![CircleCI](https://circleci.com/gh/jameslnewell/readdir-on-steroids.svg?style=svg)](https://circleci.com/gh/jameslnewell/readdir-on-steroids)
 
 ## Installation
 
-	npm install --save finder-on-steroids
+```bash
+npm install --save finder-on-steroids
+```
 
 ## Usage
 
 ```js
-var finder = require('finder-on-steroids');
+import finder from "../src";
 
-var directory = process.argv[2] || process.cwd();
+const directory = process.argv[4] || ".";
 
-finder(directory).files().depth(2).name('*.js').find(function(err, files) {
-	console.log(err, files);
-});
+finder(directory)
+  .files()
+  .depth(1)
+  .name("*.ts")
+  .find()
+  .then(
+    files => {
+      console.log("\n  Found " + files.length + " TypeScript files:");
+      console.log("   - " + files.sort().join("\n   - ") + "\n");
+    },
+    error => console.error(error)
+  );
 ```
 
-## Methods
+## API
 
-### Finder.files() : Finder
+### `finder(directory: string): Finder`
+
+Create a new finder object.
+
+### `.files(): Finder`
 
 Restrict results to contain only files as identified by `fs.Stat.isFile()`.
 
-### Finder.directories() : Finder
+### `.directories(): Finder`
 
 Restrict results to contain only directories identified by `fs.Stat.isDirectory()`.
 
-### Finder.depth(depth : Number) : Finder
+### `.depth(max: number) : Finder`
 
-Restrict results to contain only paths of a specific number of levels.
+### `.depth(min: number, max: number) : Finder`
 
-### Finder.name(pattern : String|RegExp) : Finder
+Restrict results to contain only paths up to a specific depth.
 
-Restrict results to contain only files and directories with names that match the specified pattern. Takes a glob string or RegExp.
+### `.name(pattern: string|RegExp): Finder`
 
-### Finder.path(pattern : String|RegExp) : Finder
+Restrict results to contain only files and directories with base names that match the specified pattern. Takes a glob string or a RegExp.
 
-Restrict results to contain only files and directories with relative paths that match the specified pattern. Takes a glob string or RegExp.
+### `.path(pattern: string|RegExp): Finder`
 
-### Finder.size(min : Number, [max : Number]) : Finder
+Restrict results to contain only files and directories with dir names that match paths that match the specified pattern. Takes a glob string or RegExp.
+
+### `.size(max: number) : Finder`
+
+### `.size(min: number, max: number) : Finder`
 
 Restrict results to contain only files and directories of size within the specified range.
 
-- `min` - The minimum number of bytes that results can contain
-- `max` - optional - The maximum number of bytes that results can contain
-
-### Finder.filter(Function(path : String : path, stat : Object) : Boolean) : Finder
+### `.include(Function(filter: string | RegExp | (path: string, stat: Stats) => boolean): Finder`
 
 Restrict results to contain only files and directories according to a custom filter function.
 
-### Finder.find([Function(Error, Array) : callback]) : Promise
+### `.exclude(Function(filter: string | RegExp | (path: string, stat: Stats) => boolean): Finder`
 
-Finds files matching the specified criteria.
+Restrict results to contain only files and directories according to a custom filter function.
 
-## Change log
+### `.find(): Promise<string[]>`
 
-## 0.4.0
-
-- updated dependencies
+Start finding files.
 
 ## License
 
 The MIT License (MIT)
 
 Copyright (c) 2014 James Newell
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
