@@ -1,6 +1,6 @@
 {
   "name": "finder-on-steroids",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "fs",
     "readdir",
@@ -41,7 +41,8 @@
     "watch": "node-scripts build --watch",
     "test": "node-scripts test",
     "example": "node-scripts example",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "prepublishOnly": "yarn run clean && yarn run build && yarn run test"
   },
   "lint-staged": {
     "*.{json,ts,md},": [

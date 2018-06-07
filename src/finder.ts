@@ -1,16 +1,15 @@
 /* tslint:disable unified-signatures */
 import readdir from "readdir-on-steroids";
+import { Finder, Filter, Stats } from "./types";
 import * as filters from "./filters";
-import { FilterFunction } from "./filters";
 
-export class Finder {
+export class FileSystemFinder implements Finder {
   private readonly directory: string;
-  private readonly listFilters: FilterFunction[] = [];
-  private readonly walkFilters: FilterFunction[] = [];
+  private readonly listFilters: Filter[] = [];
+  private readonly walkFilters: Filter[] = [];
 
   constructor(directory: string) {
     this.directory = directory;
-    return this;
   }
 
   files(): Finder {
@@ -57,17 +56,17 @@ export class Finder {
     return this;
   }
 
-  include(filter: string | RegExp | FilterFunction): Finder {
+  include(filter: string | RegExp | Filter): Finder {
     this.listFilters.push(filters.include(filter));
     return this;
   }
 
-  exclude(filter: string | RegExp | FilterFunction): Finder {
+  exclude(filter: string | RegExp | Filter): Finder {
     this.listFilters.push(filters.exclude(filter));
     return this;
   }
 
-  filter(filter: string | RegExp | FilterFunction): Finder {
+  filter(filter: string | RegExp | Filter): Finder {
     // tslint:disable-next-line no-console
     console.warn(
       "Finder.filter() has been deprecated. Please use `Finder.include()` instead."

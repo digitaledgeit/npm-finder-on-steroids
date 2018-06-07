@@ -1,11 +1,9 @@
 /* tslint:disable no-shadowed-variable unified-signatures */
 import * as p from "path";
 import { Minimatch } from "minimatch";
-import { Stats } from "readdir-on-steroids";
+import { Filter, Stats } from "./types";
 
-export type FilterFunction = (path: string, stats: Stats) => boolean;
-
-export function and(...fns: FilterFunction[]) {
+export function and(...fns: Filter[]) {
   return (path: string, stats: Stats) => {
     for (const fn of fns) {
       if (!fn(path, stats)) {
@@ -16,7 +14,7 @@ export function and(...fns: FilterFunction[]) {
   };
 }
 
-export function or(...fns: FilterFunction[]) {
+export function or(...fns: Filter[]) {
   return (path: string, stats: Stats) => {
     for (const fn of fns) {
       if (fn(path, stats)) {
@@ -27,17 +25,17 @@ export function or(...fns: FilterFunction[]) {
   };
 }
 
-export function files(): FilterFunction {
+export function files(): Filter {
   return (path, stats) => stats.isFile();
 }
 
-export function directories(): FilterFunction {
+export function directories(): Filter {
   return (path, stats) => stats.isDirectory();
 }
 
-export function depth(max: number): FilterFunction;
-export function depth(min: number, max: number): FilterFunction;
-export function depth(minOrMax: number, max?: number): FilterFunction {
+export function depth(max: number): Filter;
+export function depth(min: number, max: number): Filter;
+export function depth(minOrMax: number, max?: number): Filter {
   return (path, stats) => {
     const { depth } = stats;
     if (max === undefined) {
@@ -48,7 +46,7 @@ export function depth(minOrMax: number, max?: number): FilterFunction {
   };
 }
 
-export function name(pattern: string | RegExp): FilterFunction {
+export function name(pattern: string | RegExp): Filter {
   if (typeof pattern === "string") {
     const glob = new Minimatch(pattern);
     return (path, stats) => glob.match(p.basename(path));
@@ -57,7 +55,7 @@ export function name(pattern: string | RegExp): FilterFunction {
   }
 }
 
-export function path(pattern: string | RegExp): FilterFunction {
+export function path(pattern: string | RegExp): Filter {
   if (typeof pattern === "string") {
     const glob = new Minimatch(pattern);
     return (path, stats) => glob.match(p.dirname(path));
@@ -66,9 +64,9 @@ export function path(pattern: string | RegExp): FilterFunction {
   }
 }
 
-export function size(max: number): FilterFunction;
-export function size(min: number, max: number): FilterFunction;
-export function size(minOrMax: number, max?: number): FilterFunction {
+export function size(max: number): Filter;
+export function size(min: number, max: number): Filter;
+export function size(minOrMax: number, max?: number): Filter {
   return (path, stats) => {
     const { size } = stats;
     if (max === undefined) {
@@ -81,9 +79,7 @@ export function size(minOrMax: number, max?: number): FilterFunction {
 
 //TODO: .date() handle min and max e.g. .date(min, max)
 
-export function include(
-  pattern: string | RegExp | FilterFunction
-): FilterFunction {
+export function include(pattern: string | RegExp | Filter): Filter {
   if (typeof pattern === "string") {
     const glob = new Minimatch(pattern);
     return (path, stats) => glob.match(path);
@@ -94,9 +90,7 @@ export function include(
   }
 }
 
-export function exclude(
-  pattern: string | RegExp | FilterFunction
-): FilterFunction {
+export function exclude(pattern: string | RegExp | Filter): Filter {
   if (typeof pattern === "string") {
     const glob = new Minimatch(pattern);
     return (path, stats) => !glob.match(path);

@@ -1,5 +1,7 @@
-import { Finder } from "./finder";
+export * from "./types";
+import { Finder } from "./types";
+import { FileSystemFinder } from "./finder";
 
-export default function(directory: string) {
-  return new Finder(directory);
+export default function(directory: string): Finder {
+  return new FileSystemFinder(directory);
 }
