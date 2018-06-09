@@ -29,7 +29,7 @@
     "readdir-on-steroids": "^1.1.1"
   },
   "devDependencies": {
-    "@tradie/node-scripts": "1.0.0-alpha.1a7ea183",
+    "@tradie/node-scripts": "1.0.0-alpha.5ba089db",
     "@types/jest": "^23.0.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.1.3",
