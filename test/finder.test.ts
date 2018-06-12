@@ -6,6 +6,23 @@ import finder from "../src";
 const root = __dirname + "/..";
 
 describe("finder", () => {
+  it("should throw when root does not exist", async () => {
+    expect.assertions(1);
+    try {
+      await finder("non-existent-directory")
+        .files()
+        .find();
+    } catch (error) {
+      // expect(error).toBeInstanceOf(Error);
+      expect(error).toEqual(
+        expect.objectContaining({
+          code: "ENOENT",
+          message: expect.stringContaining("no such file or directory")
+        })
+      );
+    }
+  });
+
   it(".files() should only return files", async () => {
     const paths = await finder(root)
       .files()
