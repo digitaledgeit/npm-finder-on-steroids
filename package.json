@@ -1,6 +1,6 @@
 {
   "name": "finder-on-steroids",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "keywords": [
     "fs",
     "readdir",
@@ -26,10 +26,10 @@
   "dependencies": {
     "@types/minimatch": "^3.0.3",
     "minimatch": "^3.0.3",
-    "readdir-on-steroids": "^1.1.1"
+    "readdir-on-steroids": "^1.1.2"
   },
   "devDependencies": {
-    "@tradie/node-scripts": "1.0.0-alpha.5ba089db",
+    "@tradie/node-scripts": "^1.1.0",
     "@types/jest": "^23.0.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.1.3",
